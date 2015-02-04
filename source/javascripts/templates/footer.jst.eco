@@ -1,1 +1,9 @@
-<h1>Yay</h1>
+<hr/>
+<p>
+    Content that explains what this site does
+    <br/>
+    Built by
+    <a href="https://twitter.com/udiwertheimer" target="_blank">@udiwertheimer</a>
+    and
+    <a href="https://twitter.com/yonbergman" target="_blank">@yonbergman</a>
+</p>
