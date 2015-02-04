@@ -17,7 +17,7 @@ Parse.initialize("7nX1kpA7n3EX5egUf4DFLiOBOy58onWdWBjZAT45", "y9a3EiVXet885m3H4G
 window.Flounder = new Marionette.Application()
 window.Flounder.addRegions(
     top: '.top-row'
-    main: '.center'
+    center: '.center'
     footer: '.footer'
 )
 Flounder.Models = {}
