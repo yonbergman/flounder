@@ -1,3 +1,7 @@
+<div class="letters"><%= @letters %></div>
+<p>
 <%= @name %>
+<br/>
 בראשות
 <%= @leader %>
+</p>
