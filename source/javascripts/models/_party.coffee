@@ -5,4 +5,4 @@ class @Parties extends Parse.Collection
   model: Party
 
   comparator: (party) ->
-    party.get('name')
+    party.get('order')
