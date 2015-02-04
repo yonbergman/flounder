@@ -15,3 +15,6 @@ gem 'haml'
 gem 'marionette-rails', '~> 2.2.2'
 gem 'backbone-rails'
 gem 'font-awesome-rails'
+gem 'eco'
+
+
