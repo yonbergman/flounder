@@ -1,0 +1,11 @@
+<div id="user-view">
+	<% if user = Parse.User.current(): %>
+		<div id="logged-in">
+			מברוק, <%= user.get('name') %>!
+		</div>
+	<% else: %>
+		<div id="logged-out">
+			<a id="sign-in">תתחבר, בוחר!</a>
+		</div>
+	<% end %>
+</div>
