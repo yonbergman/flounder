@@ -6,8 +6,15 @@ class @VoteView extends Marionette.LayoutView
 
   onShow: ->
     @userInfo.show(new UserInfoView(model: @model))
-    partyView = new PartiesView(collection: @collection)
-    @partySelector.show(partyView)
-    partyView.on('childview:select', (partyView) =>
+
+    @partyView = new PartiesView(collection: @collection)
+    @partySelector.show(@partyView)
+    @partyView.on('childview:select', (partyView) =>
         @trigger('select-party', partyView.model)
     )
+
+  focusOn: (party) ->
+    @partySelector.show(new LoadingView())
+
+  voted: (party) ->
+    @partySelector.show(new VotedView(model: party))

@@ -11,7 +11,7 @@ body {
   direction: rtl;
 }
 
-.parties{
+.center{
   position: relative;
   overflow: hidden;
 }
@@ -29,6 +29,12 @@ body {
     background: #f3f3f3;
     cursor: pointer;
   }
+  &.disabled{
+    &:hover{
+      background: white;
+      cursor: default;
+    }
+  }
   .letters{
     font-size: 5em;
     font-weight: bold;
@@ -40,5 +46,9 @@ body {
     left: 10px;
     right: 10px;
     width: 160px;
+  }
+  .centered-vote &{
+    margin: 5px auto;
+    float: none;
   }
 }

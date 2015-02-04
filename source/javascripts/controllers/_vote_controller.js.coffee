@@ -8,19 +8,34 @@ class VoteController
       @parties.fetch(),
     ])
     .then(
-      (user, parties) => @_showVotePage(user, parties)
-      (error) => Flounder.center.empty(),
+      (user, parties) =>
+        if user
+          @_showVotePage(user, parties)
+        else
+          @_showErrorPage()
     )
+
+  _showErrorPage: ->
+    Flounder.center.empty()
 
   _showVotePage: (user, parties) ->
-    voteView = new VoteView(model: user, collection: parties)
-    voteView.on('select-party', (party) =>
+    @voteView = new VoteView(model: user, collection: parties)
+    @voteView.on('select-party', (party) =>
       @_selectParty(user, party)
     )
-    Flounder.center.show(voteView)
+    Flounder.center.show(@voteView)
 
   _selectParty: (user, party) ->
-    Parse.function
+    @voteView.focusOn(party)
+    Parse.Cloud.run('vote', {
+      token: user.get('url_token'),
+      party: party.id
+    }).then(
+      (done) =>
+        console.log("Voted")
+        @voteView.voted(party)
+    )
+
 
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,
