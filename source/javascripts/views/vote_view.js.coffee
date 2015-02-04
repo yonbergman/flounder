@@ -6,3 +6,4 @@ class @VoteView extends Marionette.LayoutView
 
   onShow: ->
     @userInfo.show(new UserInfoView(model: @model))
+    @partySelector.show(new PartiesView(collection: @collection))
