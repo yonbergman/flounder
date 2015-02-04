@@ -1,4 +1,5 @@
 activate :autoprefixer
+config.title = 'מה-תצביע'
 
 ###
 # Compass
