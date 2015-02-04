@@ -13,8 +13,14 @@ class VoteController
     )
 
   _showVotePage: (user, parties) ->
-    Flounder.center.show(new VoteView(model: user, collection: parties))
+    voteView = new VoteView(model: user, collection: parties)
+    voteView.on('select-party', (party) =>
+      @_selectParty(user, party)
+    )
+    Flounder.center.show(voteView)
 
+  _selectParty: (user, party) ->
+    Parse.function
 
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,

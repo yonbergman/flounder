@@ -1,0 +1,6 @@
+<img src="<%= @avatar_url %>" class="img-circle">
+<h1 class="rtl">
+    לאיזה מפלגה לדעתך
+    <strong><%= @name %></strong>
+    יצביע?
+</h1>

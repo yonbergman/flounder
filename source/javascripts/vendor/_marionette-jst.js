@@ -1,4 +1,4 @@
 Backbone.Marionette.Renderer.render = function(template, data){
-    template = "templates/" + template;
+    template = "templates/_" + template;
     return JST[template](data);
 };

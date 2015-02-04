@@ -3,7 +3,7 @@
 #= require 'backbone'
 #= require 'backbone.marionette'
 #= require 'bootstrap'
-#= require 'fb'
+#= require '_fb'
 #= require_tree './vendor'
 
 #= require_self
