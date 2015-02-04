@@ -3,6 +3,7 @@ class @UserController
   constructor: ->
     @userView = new UserView()
     @userView.render()
+    Flounder.center.show(@userView)
     @userView.on('sign-in', @signIn)
     @userView.on('sign-out', @signOut)
 
@@ -16,10 +17,8 @@ class @UserController
       success: (user) =>
         FB.api('/me', (fb_user) =>
           user.save(
-            first_name: fb_user.first_name
-            last_name: fb_user.last_name
-            display_name: fb_user.name
-            avatar: "http://graph.facebook.com/#{fb_user.id}/picture"
+            name: fb_user.name
+            avatar_url: "http://graph.facebook.com/#{fb_user.id}/picture"
           )
           @userView.render()
         )
