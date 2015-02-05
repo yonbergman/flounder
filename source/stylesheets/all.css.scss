@@ -65,4 +65,14 @@ body {
     margin: 5px auto;
     float: none;
   }
+  @media (max-width: $screen-xs-max) {
+    width: 135px;
+    font-size: 0.75em;
+    p{
+      left: 5px;
+      right: 5px;
+      width: 125px;
+    }
+
+  }
 }
