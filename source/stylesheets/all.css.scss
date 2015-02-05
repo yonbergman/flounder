@@ -2,6 +2,9 @@
 
 $body-bg: #E6E6E6;
 $gray-lighter: #ccc;
+$nav-pills-border-radius: 0;
+
+$brand-primary: #2274b3;
 
 @import "bootstrap";
 @import "font-awesome";
@@ -19,6 +22,17 @@ body {
 .ltr{
   direction: ltr;
 }
+
+.nav.nav-pills li{
+  a{
+    background: $brand-primary;
+    color: white;
+    &:hover{
+      background: lighten($brand-primary, 10);
+    }
+  }
+}
+
 .main-logo{
   width: 20em;
   margin: 2em auto;
@@ -75,4 +89,7 @@ body {
     }
 
   }
+}
+img.img-tiny{
+  @include square(18px);
 }

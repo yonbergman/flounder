@@ -1,0 +1,17 @@
+<ul class="nav nav-pills">
+    <% if Parse.User.current(): %>
+        <li><a class='sign-out' href="#">
+            התנתק
+        </a></li>
+        <li><a>
+            <%= @name %>
+            <img src="<%= @avatar_url %>" class="img-circle img-tiny">
+        </a></li>
+    <% else: %>
+        <li><a href="#" class="sign-in">
+            <i class="fa fa-facebook"></i>
+            התחבר עם פייסבוק
+        </a></li>
+    <% end %>
+
+</ul>

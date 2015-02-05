@@ -25,4 +25,4 @@ Flounder.Controllers = {}?
 
 Flounder.addInitializer (options) ->
     Backbone.history.start();
-
+    window.toolbarView = new ToolbarView().render()
