@@ -18,7 +18,6 @@ window.Flounder = new Marionette.Application()
 window.Flounder.addRegions(
     top: '.top-row'
     center: '.center'
-    footer: '.footer'
 )
 Flounder.Models = {}
 Flounder.Views = {}
@@ -26,6 +25,4 @@ Flounder.Controllers = {}?
 
 Flounder.addInitializer (options) ->
     Backbone.history.start();
-
-    Flounder.footer.show(new FooterView())
 

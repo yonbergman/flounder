@@ -1,4 +1,13 @@
-.container
+.container.page-wrap
+  .header
+    = image_tag 'flounder-logo.png', class: 'main-logo'
   .top-row
   .center
-  .footer
+.footer.rtl
+  -#%hr
+  %p
+    = 'האתר נבנה ע״י'
+    %span
+      <a href="https://twitter.com/udiwertheimer" target="_blank">udiwertheimer</a>
+      &
+      <a href="https://twitter.com/yonbergman" target="_blank">yonbergman</a>
