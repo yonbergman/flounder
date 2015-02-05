@@ -1,0 +1,39 @@
+<p class="lead rtl">
+    שלום,
+    <%= @name %>
+</p>
+<div class="well">
+    <p class="rtl">הזמן חברים להצביע בסקר האישי שלך</p>
+    <div class="input-group">
+        <input class="form-control" type="text" value="<%= @vote_url %>">
+        <span class="input-group-btn">
+            <button class="btn btn-default zclip" type="button" data-zclip-text="<%= @vote_url %>">
+                <i class="fa fa-link"></i>
+                העתק
+            </button>
+        </span>
+    </div><!-- /input-group -->
+
+    <div class="rtl ">
+        <br/>
+        <button class="btn btn-facebook btn-lg btn-block">
+            שתף בפייסבוק
+            <i class="fa fa-facebook"></i>
+        </button>
+        <button class="btn btn-twitter btn-lg btn-block">
+            שתף בטוויטר
+            <i class="fa fa-twitter"></i>
+        </button>
+    </div>
+    <!--#share-->
+</div>
+<div class="rtl">
+<a href="/#vote_friends" class="btn btn-default btn-lg btn-block">
+    <i class="fa fa-users"></i>
+    הצבע בשביל חברים
+</a>
+<a href="/#results" class="btn btn-default btn-lg btn-block">
+    <i class="fa fa-bar-chart-o"></i>
+    עבור על תוצאות
+</a>
+</div>

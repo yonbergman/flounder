@@ -7,8 +7,7 @@ class @ToolbarView extends Marionette.ItemView
     'click .sign-out': '_signOut'
 
   initialize: ->
-    @userChannel = Backbone.Wreqr.radio.channel('user');
-    @listenTo(@userChannel.vent, 'user:updated', @setModelAndRender)
+    @listenTo(Flounder.vent, 'user:updated', @setModelAndRender)
     @model = Parse.User.current()
 
   setModelAndRender: ->
@@ -16,8 +15,7 @@ class @ToolbarView extends Marionette.ItemView
     @render()
 
   _signIn: ->
-    console.log("EG")
-    @userChannel.commands.execute('sign-in')
+    Flounder.signIn()
 
   _signOut: ->
-    @userChannel.commands.execute('sign-out')
+    Flounder.signOut()

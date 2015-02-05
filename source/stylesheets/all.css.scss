@@ -90,6 +90,15 @@ body {
 
   }
 }
+
 img.img-tiny{
   @include square(18px);
+}
+
+.btn.btn-facebook{
+  @include button-variant(white, #3b5998, darken(#3b5998, 5));
+}
+
+.btn.btn-twitter{
+  @include button-variant(white, #55acee, darken(#e1e8ed, 5));
 }

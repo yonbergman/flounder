@@ -1,0 +1,11 @@
+<h1>Welcome</h1>
+<btn class="btn btn-primary btn-lg btn-block sign-in">
+    <span class="default">
+        <i class="fa fa-facebook"></i>
+        התחבר עם פייסבוק
+    </span>
+    <span class="loading hidden">
+        <i class="fa fa-refresh fa-spin"></i>
+        מתחבר
+    </span>
+</btn>
