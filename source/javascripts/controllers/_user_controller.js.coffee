@@ -13,7 +13,7 @@ class @UserController
     window.location.reload()
 
   signIn: =>
-    Parse.FacebookUtils.logIn null,
+    Parse.FacebookUtils.logIn 'user_friends',
       success: (user) =>
         FB.api('/me', (fb_user) =>
           user.save(
