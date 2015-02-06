@@ -23,6 +23,12 @@ Flounder.Models = {}
 Flounder.Views = {}
 Flounder.Controllers = {}?
 
+Flounder.loading = ->
+    Flounder.center.show(new LoadingView())
+
+Flounder.errorPage = (options = {}) ->
+    Flounder.center.show(new ErrorView(options))
+
 Flounder.addInitializer (options) ->
     Backbone.history.start();
     window.toolbarView = new ToolbarView().render()

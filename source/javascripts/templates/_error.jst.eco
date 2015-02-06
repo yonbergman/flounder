@@ -1,0 +1,9 @@
+<div class="alert alert-danger">
+    <h3>
+        תקלה
+        <i class="fa fa-warning"></i>
+    </h3>
+    <% if @message: %>
+        <p><%= @message %></p>
+    <% end %>
+</div>

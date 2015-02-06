@@ -1,21 +1,17 @@
 class ResultsController
   results: (token) ->
-    Flounder.center.show(new LoadingView())
+    Flounder.loading()
 
-    if (token)
+    if token
       Flounder.User.findByWebToken(token).then (user) => @_showResultPage(user)
-#    else
-      # if current user - show results page for current user
-    # else
-      # show error page
-    Flounder.center.empty()
-
-  _showErrorPage: ->
-    Flounder.center.empty()
+    else if Parse.User.current()
+      @_showResultsPage(Parse.User.current())
+    else
+      Flounder.errorPage()
 
   _showResultsPage: (user) ->
     unless user
-      @_showErrorPage()
+      Flounder.errorPage()
       return
     # parse cloud get results {party: count} for user
     # if results

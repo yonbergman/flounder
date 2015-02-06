@@ -1,6 +1,6 @@
 class VoteController
   vote: (token) ->
-    Flounder.center.show(new LoadingView())
+    Flounder.loading()
     @parties = new Parties()
 
     Parse.Promise.when([
@@ -12,11 +12,8 @@ class VoteController
         if user
           @_showVotePage(user, parties)
         else
-          @_showErrorPage()
+          Flounder.errorPage(message: "לא נמצא משתמש כזה")
     )
-
-  _showErrorPage: ->
-    Flounder.center.empty()
 
   _showVotePage: (user, parties) ->
     @voteView = new VoteView(model: user, collection: parties)
