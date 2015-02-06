@@ -1,10 +1,10 @@
 class VoteController
-  vote: (token) ->
+  vote: (facebookId) ->
     Flounder.loading()
     @parties = new Parties()
 
     Parse.Promise.when([
-      Flounder.User.findByWebToken(token),
+      Flounder.User.findByFacebookId(facebookId),
       @parties.fetch(),
     ])
     .then(
@@ -16,6 +16,7 @@ class VoteController
     )
 
   _showVotePage: (user, parties) ->
+    window.model = user
     @voteView = new VoteView(model: user, collection: parties)
     @voteView.on('select-party', (party) =>
       @_selectParty(user, party)
@@ -25,7 +26,7 @@ class VoteController
   _selectParty: (user, party) ->
     @voteView.focusOn(party)
     Parse.Cloud.run('vote', {
-      token: user.get('url_token'),
+      target: user.get('fb_id'),
       party: party.id
     }).then(
       (done) =>
@@ -37,6 +38,6 @@ class VoteController
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,
   appRoutes: {
-    "vote/:token": "vote"
+    "vote/:facebookId": "vote"
   }
 )

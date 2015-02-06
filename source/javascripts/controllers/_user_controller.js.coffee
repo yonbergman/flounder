@@ -8,11 +8,11 @@ class @UserController
     promise = new Parse.Promise()
     Parse.FacebookUtils.logIn null,
       success: (user) =>
-        user.setACL(new Parse.ACL(user));
         FB.api('/me', (fb_user) =>
           user.save(
             name: fb_user.name
             avatar_url: "http://graph.facebook.com/#{fb_user.id}/picture"
+            fb_id: fb_user.id
           )
           Flounder.vent.trigger('user:signed-in user:updated')
           promise.resolve(user)

@@ -1,6 +1,6 @@
 @Flounder ||= {}
 class Flounder.User extends Parse.User
-  @findByWebToken: (token) ->
+  @findByFacebookId: (token) ->
     query = new Parse.Query(Parse.User)
-    query.equalTo("url_token", token)
+    query.equalTo("fb_id", token)
     query.first()

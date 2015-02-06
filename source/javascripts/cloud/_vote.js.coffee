@@ -10,16 +10,13 @@ class VoteCreator
 
 Parse.Cloud.define "vote", (request, response) ->
   partyId = request.params.party
-  userToken = request.params.token
+  fb_id = request.params.target
   voter = request.user
-
-  console.log(partyId)
-  console.log(userToken)
 
   query = new Parse.Query(Party)
 
   Parse.Promise.when([
-    Flounder.User.findByWebToken(userToken),
+    Flounder.User.findByFacebookId(fb_id),
     query.get(partyId),
   ])
   .then(

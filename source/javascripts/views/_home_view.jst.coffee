@@ -25,4 +25,4 @@ class @HomeView extends Marionette.LayoutView
 
 
   voteUrl: ->
-    location.origin + '#/vote/' + @model.get('url_token')
+    location.origin + '#/vote/' + @model.get('fb_id')

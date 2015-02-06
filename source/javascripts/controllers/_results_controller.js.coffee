@@ -3,7 +3,7 @@ class ResultsController
     Flounder.loading()
 
     if token
-      Flounder.User.findByWebToken(token).then (user) => @_showResultPage(user)
+      Flounder.User.findByFacebookId(token).then (user) => @_showResultPage(user)
     else if Parse.User.current()
       @_showResultsPage(Parse.User.current())
     else
