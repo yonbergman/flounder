@@ -1,0 +1,12 @@
+<h1 dir="rtl">איזה חבר?</h1>
+<div class="friends">
+  <% console.log(@friends) %>
+  <% for index, friend of @friends: %>
+    <div class="friend">
+      <a href="/#vote/<%= friend.attributes.fb_id %>">
+        <img src="<%= friend.attributes.avatar_url %>" class="img-circle">
+        <strong><%= friend.attributes.name %></strong>
+      </a>
+    </div>
+  <% end %>
+</div>

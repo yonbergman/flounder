@@ -102,3 +102,12 @@ img.img-tiny{
 .btn.btn-twitter{
   @include button-variant(white, #55acee, darken(#e1e8ed, 5));
 }
+
+.friends {
+  margin: 0 auto;
+  width: 40%;
+
+  .friend {
+    text-align: left;
+  }
+}

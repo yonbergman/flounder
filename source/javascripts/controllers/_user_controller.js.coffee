@@ -6,7 +6,7 @@ class @UserController
 
   signIn: =>
     promise = new Parse.Promise()
-    Parse.FacebookUtils.logIn null,
+    Parse.FacebookUtils.logIn 'user_friends',
       success: (user) =>
         FB.api('/me', (fb_user) =>
           user.save(
