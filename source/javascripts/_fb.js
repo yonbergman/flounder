@@ -6,8 +6,7 @@ window.fbAsyncInit = function() {
       xfbml      : true,  // initialize Facebook social plugins on the page
       version    : 'v2.2' // point to the latest Facebook Graph API version
     });
- 
-    // Run code after the Facebook SDK is loaded.
+    Flounder.vent.trigger("fb:ready", FB);
   };
  
   (function(d, s, id){

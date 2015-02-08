@@ -1,5 +1,5 @@
 <ul class="nav nav-pills">
-    <% if Parse.User.current(): %>
+    <% if Flounder.isSignedIn(): %>
         <li><a class='sign-out' href="#">
             התנתק
         </a></li>

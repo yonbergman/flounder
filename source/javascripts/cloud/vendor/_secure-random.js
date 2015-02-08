@@ -18,7 +18,7 @@
         options = options || {
             type: 'Array'
         }
-        return nodeRandom(count, options);
+        return nodeRandom(count, options)
     }
 
     function nodeRandom(count, options) {

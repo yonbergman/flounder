@@ -4,7 +4,7 @@ class HomeController
     @showHomeForUser()
 
   showHomeForUser: =>
-    if Parse.User.current()
+    if Flounder.isSignedIn()
       @home()
     else
       @signInPage()
