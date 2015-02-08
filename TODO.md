@@ -1,4 +1,4 @@
-- [ ] Anonymous User (Merging users)
+- [ ] Anonymous User (Merging users) **YB**
 - [ ] Vote 4 Friends
 - [ ] Facebook graph hack (invitable friends)
 - [ ] voteResults clound function `{party: count}`
