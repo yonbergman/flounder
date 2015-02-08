@@ -1,0 +1,10 @@
+- [ ] Anonymous User (Merging users) **YB**
+- [ ] Vote 4 Friends
+- [ ] Facebook graph hack (invitable friends)
+- [ ] voteResults clound function `{party: count}`
+- [ ] Results widget with/without chart
+- [ ] Re-do homepage
+- [ ] After Vote Page
+- [ ] Lots of content
+- [ ] og meta tags
+- [ ] Parse Analytics event
