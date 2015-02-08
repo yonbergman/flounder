@@ -9,57 +9,50 @@ class @UserController
   signOut: =>
     Parse.User.logOut()
     Flounder.vent.trigger('user:signed-out user:updated')
+    @anonymousLogin()
 
-  signIn: =>
-    debugger
+
+  signInViaFacebook: (promise = new Parse.Promise()) =>
     promise = new Parse.Promise()
-    if Parse.User.current()
-      fbPromise = new Parse.Promise()
-      Parse.FacebookUtils.link(Parse.User.current(), 'user_friends'
-        success: (user) ->
-          fbPromise.resolve(user)
-        error: (user, error, foo) =>
-          console.log(":(", user, error)
-          window.bar = [user, error, foo]
-          if error.code == 208
-            authData = user.get('authData').facebook
-            @linkAnonymousAccount(fbPromise, authData)
-          fbPromise.reject(error)
-      )
-      Parse.User.current().set('anonymous', false)
-    else
-      fbPromise = Parse.FacebookUtils.logIn 'user_friends'
-    fbPromise.then(
-      (user) =>
-        FB.api('/me', (fb_user) =>
-          user.save(
-            name: fb_user.name
-            avatar_url: "http://graph.facebook.com/#{fb_user.id}/picture"
-            fb_id: fb_user.id
-          )
-          Flounder.vent.trigger('user:signed-in user:updated')
-          promise.resolve(user)
-        )
-      ,
-      (user, error) ->
-        console.error("User cancelled the Facebook login or did not fully authorize.")
-        promise.reject(error)
-    )
+    Parse.FacebookUtils.link Parse.User.current(), 'user_friends',
+      success: (user) =>
+        promise.resolve(user)
+      error: (user, error) =>
+        if error.code == 208 # user already linked
+          Parse.Cloud.run('anonymousLinking', user.get('authData'))
+          @signUpViaFacebook(promise)
+        else
+          promise.reject(error)
     promise
 
-  linkAnonymousAccount: (promise, authData) =>
-    Parse.Cloud.run('anonymousMerge', authData).then(
-      (sessionToken) ->
-        if sessionToken
-          Parse.User.become(sessionToken)
-          promise.resolve(Parse.User.current())
-        else
-          promise.reject("could not merge")
-      ,
-      (error) ->
+  signUpViaFacebook: (promise = new Parse.Promise())=>
+    Parse.FacebookUtils.logIn 'user_friends',
+      success: (user) =>
+        promise.resolve(user)
+      error: (user, error) =>
         promise.reject(error)
+    promise
+
+  updateUserInfo: (user) =>
+    FB.api('/me', (fb_user) =>
+      user.set(
+        name: fb_user.name
+        avatar_url: "http://graph.facebook.com/#{fb_user.id}/picture"
+        fb_id: fb_user.id
+        anonymous: false
+      )
+      user.save()
     )
 
+  signIn: =>
+    if Parse.User.current()
+      promise = @signInViaFacebook()
+    else
+      promise = @signUpViaFacebook()
+    promise.done (user) =>
+      @updateUserInfo(user)
+      Flounder.vent.trigger('user:signed-in user:updated')
+    promise
 
   anonymousLogin: =>
     return if Parse.User.current()?

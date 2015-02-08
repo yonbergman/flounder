@@ -1,13 +1,3 @@
-class VoteCreator
-  constructor: (user, party, voter) ->
-    if !user or !party
-      return Parse.Promise.error()
-    vote = new Vote()
-    vote.set('target', user)
-    vote.set('party', party)
-    vote.set('voter', voter)
-    vote.save()
-
 Parse.Cloud.define "vote", (request, response) ->
   partyId = request.params.party
   fb_id = request.params.target
@@ -20,7 +10,7 @@ Parse.Cloud.define "vote", (request, response) ->
     query.get(partyId),
   ])
   .then(
-    (user, party) -> new VoteCreator(user, party, voter)
+    (user, party) -> Flounder.VoteCreator.vote(user, party, voter)
   ).then(
     (vote) -> response.success('Vote Created', vote.id),
     (obj, err) -> response.error(err)
