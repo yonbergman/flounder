@@ -2,6 +2,7 @@
     שלום,
     <%= @name %>
 </p>
+<div class="home-top"></div>
 <div class="well">
     <p class="rtl">הזמן חברים להצביע בסקר האישי שלך</p>
     <div class="input-group">
@@ -31,9 +32,5 @@
 <a href="/#vote_friends" class="btn btn-default btn-lg btn-block">
     <i class="fa fa-users"></i>
     הצבע בשביל חברים
-</a>
-<a href="/#results" class="btn btn-default btn-lg btn-block">
-    <i class="fa fa-bar-chart-o"></i>
-    עבור על תוצאות
 </a>
 </div>

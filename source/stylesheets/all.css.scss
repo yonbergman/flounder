@@ -111,3 +111,20 @@ img.img-tiny{
     text-align: left;
   }
 }
+
+.progress-bar-rtl{
+  float: right;
+}
+
+.party-graph{
+  .progress{
+    &:nth-child(8n+1){ .progress-bar{ background: #60BD68; }}
+    &:nth-child(8n+2){ .progress-bar{ background: #FAA43A; }}
+    &:nth-child(8n+3){ .progress-bar{ background: #5DA5DA; }}
+    &:nth-child(8n+4){ .progress-bar{ background: #DECF3F; }}
+    &:nth-child(8n+5){ .progress-bar{ background: #F17CB0; }}
+    &:nth-child(8n+6){ .progress-bar{ background: #B2912F; }}
+    &:nth-child(8n+7){ .progress-bar{ background: #F15854; }}
+    &:nth-child(8n+8){ .progress-bar{ background: #4D4D4D; }}
+  }
+}

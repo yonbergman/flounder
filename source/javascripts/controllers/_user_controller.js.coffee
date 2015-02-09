@@ -19,8 +19,9 @@ class @UserController
         promise.resolve(user)
       error: (user, error) =>
         if error.code == 208 # user already linked
-          Parse.Cloud.run('anonymousLinking', user.get('authData'))
-          @signUpViaFacebook(promise)
+          Parse.Cloud.run('anonymousLinking', user.get('authData')).then(
+            => @signUpViaFacebook(promise)
+          )
         else
           promise.reject(error)
     promise

@@ -1,0 +1,17 @@
+<% if @results.length > 0: %>
+<h3>תוצאות</h3>
+<div class="party-graph">
+<% for result in @results: %>
+<div class="progress">
+    <div class="progress-bar progress-bar-rtl" role="progressbar" aria-valuenow="<%= result.percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.percent %>%;">
+        <%= result.party.name %> (<%= result.count %>)
+    </div>
+</div>
+<% end %>
+</div>
+<% else: %>
+<h2>
+    <i class="fa fa-refresh fa-spin"></i>
+    טוען תוצאות...
+</h2>
+<% end %>
