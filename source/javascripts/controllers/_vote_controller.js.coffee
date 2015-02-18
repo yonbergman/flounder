@@ -12,9 +12,11 @@ class VoteController
     Parse.Promise.when([
       Flounder.User.findByFacebookId(facebookId),
       @parties.fetch(),
+      @_checkIfVoted(facebookId)
     ])
     .then(
-      (user, parties) =>
+      (user, parties, voted, y) =>
+        console.log(user, parties, voted, y)
         if user
           @_showVotePage(user, parties)
         else
@@ -35,10 +37,11 @@ class VoteController
       target: user.get('fb_id'),
       party: party.id
       voteKey: @voteKey
-    }).then(
-      (done) =>
-        console.log("Voted")
-        @voteView.voted(party)
+    }).done( =>
+      console.log("Voted")
+      @voteView.voted(party)
+    ).fail( (err) =>
+      Flounder.errorPage(err)
     )
 
   _generateVoteId: ->
@@ -53,6 +56,12 @@ class VoteController
     _(10).times ->
       text += VALID_CHARS.charAt(Math.floor(Math.random() * VALID_CHARS.length));
     text
+
+  _checkIfVoted: (facebookId)->
+    Parse.Cloud.run('didVote', {
+      target: facebookId,
+      voteKey: @voteKey
+    })
 
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,
