@@ -1,8 +1,6 @@
-- [X] Anonymous User (Merging users) **YB**
+- [ ] Prevent double Vote **YB**
 - [ ] Vote 4 Friends
 - [ ] Facebook graph hack (invitable friends)
-- [X] voteResults clound function `{party: count}` **YB**
-- [ ] Results widget with/without chart **YB**
 - [ ] Re-do homepage
 - [ ] After Vote Page
 - [ ] Lots of content

@@ -1,4 +1,10 @@
 class VoteController
+  VALID_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-";
+  VOTE_KEY = '_flounder_votekey'
+  constructor: ->
+    @_generateVoteId()
+
+
   vote: (facebookId) ->
     Flounder.loading()
     @parties = new Parties()
@@ -28,12 +34,25 @@ class VoteController
     Parse.Cloud.run('vote', {
       target: user.get('fb_id'),
       party: party.id
+      voteKey: @voteKey
     }).then(
       (done) =>
         console.log("Voted")
         @voteView.voted(party)
     )
 
+  _generateVoteId: ->
+    voteKey = localStorage.getItem(VOTE_KEY)
+    unless voteKey
+      voteKey = @_randomID()
+      localStorage.setItem(VOTE_KEY, voteKey)
+    @voteKey = voteKey
+
+  _randomID: ->
+    text = ""
+    _(10).times ->
+      text += VALID_CHARS.charAt(Math.floor(Math.random() * VALID_CHARS.length));
+    text
 
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,
