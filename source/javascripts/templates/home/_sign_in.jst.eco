@@ -1,4 +1,9 @@
-<h1>Welcome</h1>
+<p class="lead rtl">
+    ברוכים הבאים לאיזה פתק.
+    <br/>
+    באמצעות האתר תוכלו לברר מה החברים שלכם חושבים שאתם תצביעו בבחירות.
+    <br/>
+</p>
 <btn class="btn btn-primary btn-lg btn-block sign-in">
     <span class="default">
         <i class="fa fa-facebook"></i>
@@ -9,3 +14,6 @@
         מתחבר
     </span>
 </btn>
+<p>
+    התחברו ושלחו הזמנות לחברים כדי להתחיל
+</p>

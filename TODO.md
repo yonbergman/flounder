@@ -1,4 +1,3 @@
-- [ ] Prevent double Vote **YB**
 - [ ] Vote 4 Friends
 - [ ] Facebook graph hack (invitable friends)
 - [ ] Re-do homepage
