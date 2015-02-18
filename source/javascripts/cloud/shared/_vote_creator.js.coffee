@@ -1,6 +1,6 @@
 class Flounder.VoteCreator
   @vote: (user, party, voter) ->
-    if !user or !party or !voter
+    if !user or !party
       return Parse.Promise.error('missing variables')
     #TODO: validate no other vote exists for target/voter pair
     #TODO: validate target != voter
