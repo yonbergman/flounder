@@ -4,7 +4,6 @@ class VoteController
   constructor: ->
     @_generateVoteId()
 
-
   vote: (facebookId) ->
     Flounder.loading()
     @parties = new Parties()
@@ -12,24 +11,29 @@ class VoteController
     Parse.Promise.when([
       Flounder.User.findByFacebookId(facebookId),
       @parties.fetch(),
-      @_checkIfVoted(facebookId)
     ])
     .then(
-      (user, parties, voted, y) =>
-        console.log(user, parties, voted, y)
+      (user, parties) =>
         if user
-          @_showVotePage(user, parties)
+          @_checkIfVoted(facebookId).done(
+            => @_showVotePage(user, parties)
+          ).fail(
+            (vote) => @_showVotePage(user, parties) ;@_showAlreadyVoted(vote)
+          )
         else
           Flounder.errorPage(message: "לא נמצא משתמש כזה")
     )
 
   _showVotePage: (user, parties) ->
-    window.model = user
     @voteView = new VoteView(model: user, collection: parties)
     @voteView.on('select-party', (party) =>
       @_selectParty(user, party)
     )
     Flounder.center.show(@voteView)
+
+  _showAlreadyVoted: (vote) ->
+    party = @parties.get(vote.party.objectId)
+    @voteView.voted(party)
 
   _selectParty: (user, party) ->
     @voteView.focusOn(party)
@@ -61,7 +65,10 @@ class VoteController
     Parse.Cloud.run('didVote', {
       target: facebookId,
       voteKey: @voteKey
-    })
+    }).fail(
+      (err) ->
+        JSON.parse(err.message)
+    )
 
 VoteRouter = new Marionette.AppRouter(
   controller: new VoteController,
